@@ -1,10 +1,12 @@
-#Se requiere de la instalacion de la libreria "serial"
-#El puerto actual por el que se comunica es el visualizado desde el portatil, se requiere el de la Raspi
+#Se requiere de la instalacion de la libreria "serial" y "requests"
 import serial
+import requests
+import time
+URL = 'http://r2cam.me:8081/r2cam'
 ser = serial.Serial(port='/dev/cu.usbmodemFA131',baudrate=9600)
-print ("Introduce un caracter (0 para salir):" )
-entrada = int(input())
-while entrada != 0:  
-   ser.write(entrada)   
-   print ("Introduce un caracter (0' para salir): ") 
-   entrada = int(input())
+time.sleep(3)
+while True:
+   r = requests.get(URL)
+   print(r.json()['direccion'])
+   ser.write(r.json()['direccion'])
+   time.sleep(.100)
