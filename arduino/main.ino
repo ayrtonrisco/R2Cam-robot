@@ -1,4 +1,3 @@
-int respuesta = 0;
 #include <LEANTEC_ControlMotor.h>//Incluimos la librería control de motores
 // Configuramos los pines que vamos a usar
 ControlMotor control(2,3,7,4,5,6);
@@ -8,7 +7,7 @@ int MotorIzq1=7;//El pin 7 de arduino se conecta con el pin In3 del L298N
 int MotorIzq2=4;//El pin 4 de arduino se conecta con el pin In4 del L298N
 int PWM_Derecho=5;//El pin 5 de arduino se conecta con el pin EnA del L298N
 int PWM_Izquierdo=6;//El pin 6 de arduino se conecta con el pin EnB del L298N
-
+int respuesta = 0;
 int velocidad=150;//Declaramos una variable para guardar la velocidad
 
 void setup() {
@@ -23,14 +22,28 @@ void setup() {
 }
 
 void loop() {
-        giro_horario();//Llamamos a la función giro_horario
+  
         if (Serial.available() > 0) {
-                // read the incoming byte:
-                //respuesta = Serial.read();
-
-                // say what you got:
-               giro_antihorario();
-               delay(4000);
+          respuesta = Serial.read();
+          switch(respuesta){
+            case 49:
+              retroceder();
+              break;
+            case 50:
+              avanzar();
+              break;
+            case 51:
+              giroIzq();
+              break;
+            case 52:
+              giroDer();
+              break;
+            case 53:
+              parar();
+              break;
+            default:
+              parar();
+              break;
         }
 }
 void derecha_antihorario_izquierda_horario(){
