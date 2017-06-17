@@ -3,13 +3,15 @@
 ## Arduino
 Dentro tenemos un archivo .ino que contendra el codigo que ira ejecutando la placa arduino.
 ### Por hacer:
-- [ ] Escuchar a la Raspberry
-- [ ] Movimiento de las ruedas
-- [ ] Extras
+- [x] Escuchar a la Raspberry
+- [x] Movimiento de las ruedas
 ## Raspberry Pi
 Dentro tendremos las aplicaciones que ejectura la Raspberry(la cual llamaremos cliente).
 ### Por hacer:
-- [ ] Hablar a arduino
-- [ ] Preguntar al servidor acerca de las ordenes
-- [ ] Capturar video
-- [ ] Stream del video
+- [x] Hablar a arduino
+- [x] Preguntar al servidor acerca de las ordenes
+- [x] Capturar video
+- [x] Stream del video
+### Realizar el streaming
+Para realizar el streaming de video hemos ejecutado el siguiente comando
+> avconv -f video4linux2 -s 500x500 -i /dev/video0 -vcodec libx264 -preset ultrafast -f flv rtmp://r2cam.me/live/directo

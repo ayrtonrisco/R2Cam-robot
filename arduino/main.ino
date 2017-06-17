@@ -22,7 +22,6 @@ void setup() {
 }
 
 void loop() {
-  
         if (Serial.available() > 0) {
           respuesta = Serial.read();
           switch(respuesta){
@@ -44,65 +43,62 @@ void loop() {
             default:
               parar();
               break;
+          }
         }
 }
-void derecha_antihorario_izquierda_horario(){
-/*En esta fución la rueda derecha girará en sentido antihorario y la
-izquierda en sentido horario.
-En este caso, si las ruedas estuvieran en el chasis de un robot, el
-robot retrocederia.*/
-  digitalWrite(MotorDer1,HIGH);
-  digitalWrite(MotorDer2,LOW);
-  digitalWrite(MotorIzq1,HIGH);
-  digitalWrite(MotorIzq2,LOW);
-  analogWrite(PWM_Derecho,200);//Velocidad motor derecho 200
-  analogWrite(PWM_Izquierdo,200);//Velocidad motor izquierdo 200
-
-}
-void derecha_horario_izquierda_antihorario(){
-/*En esta fución la rueda derecha girará en sentido horario y la
-izquierda en sentido antihorario.
-En este caso, si las ruedas estuvieran en el chasis de un robot, el
-robot avanzaría.*/
-  digitalWrite(MotorDer1,LOW);
-  digitalWrite(MotorDer2,HIGH);
-  digitalWrite(MotorIzq1,LOW);
-  digitalWrite(MotorIzq2,HIGH);
-  analogWrite(PWM_Derecho,200);//Velocidad motor derecho 200
-  analogWrite(PWM_Izquierdo,200);//Velocidad motor izquierdo 200
-
-}
-void giro_horario(){
-/*En esta fución ambas ruedas girarán en sentido horario.
-En este caso, si las ruedas estuvieran en el chasis de un robot, el
-robot giraria a la derecha.*/
-  digitalWrite(MotorDer1,HIGH);
-  digitalWrite(MotorDer2,LOW);
-  digitalWrite(MotorIzq1,LOW);
-  digitalWrite(MotorIzq2,HIGH);
-  analogWrite(PWM_Derecho,200);//Velocidad motor derecho 200
-  analogWrite(PWM_Izquierdo,200);//Velocidad motor izquierdo 200
-
-}
-void giro_antihorario(){
-/*En esta fución ambas ruedas girarán en sentido antihorario.
-En este caso, si las ruedas estuvieran en el chasis de un robot, el
-robot giraria a la izquierda.*/
-  digitalWrite(MotorDer1,LOW);
-  digitalWrite(MotorDer2,HIGH);
-  digitalWrite(MotorIzq1,HIGH);
-  digitalWrite(MotorIzq2,LOW);
-  analogWrite(PWM_Derecho,200);//Velocidad motor derecho 200
-  analogWrite(PWM_Izquierdo,200);//Velocidad motor izquierdo 200
-
-}
-void parar(){
+//DECLARACION DE METODOS QUE CONTROLAN EL MOVIMIENTO DE LAS RUEDAS
+void parar(){ 
 /*Función para que las ruedas paren*/
   digitalWrite(MotorDer1,LOW);
   digitalWrite(MotorDer2,LOW);
   digitalWrite(MotorIzq1,LOW);
   digitalWrite(MotorIzq2,LOW);
-  analogWrite(PWM_Derecho,200);//Velocidad motor derecho 200
-  analogWrite(PWM_Izquierdo,200);//Velocidad motor izquierdo 200
-
+}
+void avanzar(){
+  digitalWrite(MotorDer1,LOW); 
+  digitalWrite(MotorIzq1,LOW);
+  digitalWrite(MotorDer2,HIGH); 
+  digitalWrite(MotorIzq2,HIGH);
+}
+void giroDer(){
+  digitalWrite(MotorDer1,LOW); 
+  digitalWrite(MotorIzq1,LOW);
+  digitalWrite(MotorDer2,LOW); 
+  digitalWrite(MotorIzq2,HIGH);
+}
+void giroIzq(){
+  digitalWrite(MotorDer1,LOW); 
+  digitalWrite(MotorIzq1,LOW);
+  digitalWrite(MotorDer2,HIGH); 
+  digitalWrite(MotorIzq2,LOW);
+}
+void retroIzq(){
+  digitalWrite(MotorDer1,LOW); 
+  digitalWrite(MotorIzq1,HIGH);
+  digitalWrite(MotorDer2,LOW);
+  digitalWrite(MotorIzq2,LOW);
+}
+void retroDer(){
+  digitalWrite(MotorDer1,HIGH); 
+  digitalWrite(MotorIzq1,LOW);
+  digitalWrite(MotorDer2,LOW);
+  digitalWrite(MotorIzq2,LOW);
+}
+void retroceder(){
+  digitalWrite(MotorDer2,LOW);
+  digitalWrite(MotorIzq2,LOW);
+  digitalWrite(MotorDer1,HIGH); 
+  digitalWrite(MotorIzq1,HIGH);
+}
+void giroEjeDer(){
+  digitalWrite(MotorDer1,LOW); 
+  digitalWrite(MotorDer2,LOW); 
+  digitalWrite(MotorIzq1,HIGH);
+  digitalWrite(MotorIzq2,HIGH);
+}
+void giroEjeIzq(){
+  digitalWrite(MotorIzq1,LOW);
+  digitalWrite(MotorIzq2,LOW);
+  digitalWrite(MotorDer2,HIGH); 
+  digitalWrite(MotorDer1,HIGH); 
 }
